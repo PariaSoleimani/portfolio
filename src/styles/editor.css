@@ -1,0 +1,47 @@
+.editor {
+	@apply flex min-h-0 flex-col border-r border-zinc-800 overflow-hidden order-2 md:order-1;
+}
+
+.editor-body {
+	@apply flex min-h-0 flex-1 flex-col overflow-hidden;
+}
+
+.editor-main {
+	@apply flex min-h-0 flex-1 overflow-scroll;
+}
+
+.editor-gutter {
+	@apply min-w-13 shrink-0 font-mono px-4 py-4 border-r border-zinc-800 text-zinc-600 text-xs md:text-sm leading-relaxed text-right;
+}
+
+.editor-code {
+	@apply relative flex-1 min-w-0 overflow-hidden;
+}
+
+.editor-highlight,
+.editor-textarea {
+	@apply absolute inset-0 m-0 border-0 p-4 font-mono text-xs md:text-sm leading-relaxed whitespace-pre border-l-2 border-transparent;
+	tab-size: 2;
+}
+
+.editor-highlight {
+	@apply overflow-hidden text-zinc-300;
+}
+
+.editor-textarea {
+	@apply w-full h-full resize-none outline-0 bg-transparent text-transparent caret-pink-300 focus:border-pink-300 selection:bg-pink-400/20 selection:text-pink-50;
+}
+
+.syntax-comment,
+.syntax-punctuation {
+	@apply text-zinc-500;
+}
+
+.syntax-key,
+.syntax-string {
+	@apply text-pink-300;
+}
+
+.syntax-value {
+	@apply text-green-300;
+}

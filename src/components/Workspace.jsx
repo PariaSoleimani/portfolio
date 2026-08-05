@@ -1,10 +1,21 @@
 'use client';
 
+import CodeEditor from '@components/CodeEditor';
+import { useWorkspaceEditor } from '@hooks/useWorkspaceEditor';
 import { cn } from '@lib/utils';
 import { useState } from 'react';
 import { VscChevronLeft, VscChevronRight } from 'react-icons/vsc';
 
-const Workspace = ({path, projects, fetchError = null}) => {
+const Workspace = ({ path, projects, fetchError = null }) => {
+	const {
+		source,
+		fileName,
+		language,
+		updateSource,
+		resetSource,
+		error,
+		isModified,
+	} = useWorkspaceEditor(path);
 	const [editorOpen, setEditorOpen] = useState(true);
 
 	return (
@@ -31,6 +42,17 @@ const Workspace = ({path, projects, fetchError = null}) => {
 					'workspace-grid',
 					editorOpen ? '' : 'editor-closed',
 				)}>
+				{editorOpen && (
+					<CodeEditor
+						filename={fileName}
+						language={language}
+						source={source}
+						onChange={updateSource}
+						onReset={resetSource}
+						isModified={isModified}
+						error={error}
+					/>
+				)}
 				<section className="preview">
 					<div className="panel-header">
 						<span className="text-label">Preview</span>
@@ -39,8 +61,7 @@ const Workspace = ({path, projects, fetchError = null}) => {
 							<span>running</span>
 						</p>
 					</div>
-					<div className="preview-main">
-					</div>
+					<div className="preview-main"></div>
 				</section>
 			</div>
 		</div>

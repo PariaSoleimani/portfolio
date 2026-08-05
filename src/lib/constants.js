@@ -113,3 +113,39 @@ export const PERSONAL_LINKS = {
 		value: 'connect with me',
 	},
 };
+
+export const WORKSPACE_FILES = {
+	'/': {
+		filename: 'home.json',
+		language: 'JSON',
+		source: `{
+  "name": "Paria Soleimani",
+  "role": "Web Developer",
+  "bio": "I build practical, responsive web applications with modern technologies. Focused on clean code and intuitive user experiences.",
+  "cta": "View Projects"
+}`,
+	},
+	'/about': {
+		filename: 'about.json',
+		language: 'JSON',
+		source: `{
+  "location": "Tehran, Iran",
+  "experience": "2+ years of experience",
+  "intro": "I love creating intuitive and engaging user interfaces, writing code that is both beautiful and functional.",
+  "focus": "I enjoy full-stack challenges, side projects, and learning from developer communities.",
+  "skills": ["React", "Vue", "Next.js", "Nuxt.js", "Node.js", "Express.js", "PostgreSQL", "React Native", "Expo"]
+}`,
+	},
+	'/projects': {
+		filename: 'projects.json',
+		language: 'JSON',
+		source: `{
+  "language": "all",
+  "sort": "updated",
+  "limit": 6,
+  "columns": 2,
+  "showDescription": true,
+  "showTopics": true
+}`,
+	},
+};
