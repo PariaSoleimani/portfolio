@@ -4,7 +4,7 @@ import { cn } from '@lib/utils';
 import { useState } from 'react';
 import { VscChevronLeft, VscChevronRight } from 'react-icons/vsc';
 
-const Workspace = () => {
+const Workspace = ({path, projects, fetchError = null}) => {
 	const [editorOpen, setEditorOpen] = useState(true);
 
 	return (
