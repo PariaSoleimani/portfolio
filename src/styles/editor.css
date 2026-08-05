@@ -40,8 +40,16 @@
 	@apply flex h-7 shrink-0 items-center justify-between border-b border-zinc-800/80 bg-zinc-900 px-3 font-mono text-[0.65rem] uppercase tracking-wider text-zinc-500;
 }
 
+.terminal-resize-handle {
+	@apply h-1 shrink-0 cursor-row-resize bg-zinc-800 hover:bg-pink-300;
+}
+
 .terminal-body {
 	@apply min-h-0 flex-1 overflow-y-auto px-3 py-2;
+}
+
+.terminal--collapsed .terminal-body {
+	@apply hidden;
 }
 
 .terminal-badge {

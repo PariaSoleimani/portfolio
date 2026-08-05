@@ -1,13 +1,32 @@
 'use client';
 
+import { useVerticalResize } from '@hooks/useVerticalResize';
+import { cn } from '@lib/utils';
 import { VscError, VscTerminal } from 'react-icons/vsc';
 
+const HEADER_HEIGHT = 28;
+const HANDLE_HEIGHT = 4;
+const COLLAPSED_HEIGHT = HEADER_HEIGHT + HANDLE_HEIGHT;
+const DEFAULT_HEIGHT = COLLAPSED_HEIGHT;
+const MAX_HEIGHT = 300;
+
 const EditorTerminal = ({ filename, error }) => {
+	const { height, isCollapsed, handleProps } = useVerticalResize({
+		defaultHeight: DEFAULT_HEIGHT,
+		collapsedHeight: COLLAPSED_HEIGHT,
+		maxHeight: MAX_HEIGHT,
+	});
 	const hasError = Boolean(error);
-	const message = error?.message;
+	const message = error;
 
 	return (
-		<div className="terminal">
+		<div
+			className={cn('terminal', isCollapsed && 'terminal--collapsed')}
+			style={{ height }}>
+			<div
+				className="terminal-resize-handle"
+				{...handleProps}
+			/>
 			<div className="terminal-header">
 				<div className="row">
 					<VscTerminal className="icon-sm" />
@@ -15,10 +34,16 @@ const EditorTerminal = ({ filename, error }) => {
 					{hasError && <span className="terminal-badge">1</span>}
 				</div>
 				<span className="terminal-status">
-					{hasError ? 'problems' : 'ready'}
+					{hasError
+						? 'problems'
+						: isCollapsed
+							? 'collapsed'
+							: 'ready'}
 				</span>
 			</div>
-			<div className="terminal-body">
+			<div
+				className="terminal-body"
+				aria-hidden={isCollapsed}>
 				{hasError ? (
 					<p className="terminal-line terminal-line--error">
 						<VscError className="icon-sm shrink-0" />
