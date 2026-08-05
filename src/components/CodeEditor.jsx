@@ -30,6 +30,24 @@ const CodeEditor = ({
 		}
 	};
 
+	const handleKeyDown = event => {
+		if (event.key !== 'Tab') {
+			return;
+		}
+
+		event.preventDefault();
+		const textarea = textareaRef.current;
+		const start = textarea.selectionStart;
+		const end = textarea.selectionEnd;
+		const nextSource = `${source.slice(0, start)}  ${source.slice(end)}`;
+
+		onChange(nextSource);
+		requestAnimationFrame(() => {
+			textarea.selectionStart = start + 2;
+			textarea.selectionEnd = start + 2;
+		});
+	};
+
 	return (
 		<section className="editor">
 			<div className="panel-header border-t md:border-t-0">
@@ -72,6 +90,7 @@ const CodeEditor = ({
 							value={source}
 							onChange={event => onChange(event.target.value)}
 							onScroll={syncScroll}
+							onKeyDown={handleKeyDown}
 							spellCheck="false"
 							className="editor-textarea"
 						/>
