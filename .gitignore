@@ -1,0 +1,30 @@
+# DEV/BUILD OUTPUTS
+.output
+.data
+.next
+.cache
+dist
+
+# NODE DEPENDENCIES
+node_modules
+
+# LOGS
+logs
+*.log
+
+# MISC / OS
+.DS_Store
+
+# LOCAL ENV FILES (KEEP ONLY EXAMPLE IN GIT)
+.env
+.env.*
+!.env.example
+
+# IDEs / EDITORS
+.vscode
+.idea
+*.iml
+
+# TEMP DIRS
+.temp
+.tmp
