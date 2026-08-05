@@ -1,5 +1,6 @@
 import AppFooter from '@components/AppFooter';
 import AppHeader from '@components/AppHeader';
+import Sidebar from '@components/Sidebar';
 import '@styles/globals.css';
 import { Teachers } from 'next/font/google';
 
@@ -56,7 +57,12 @@ const RootLayout = ({ children }) => {
 			<body className={teachers.className}>
 				<div className="wrapper">
 					<AppHeader />
-					{children}
+					<div className="w-full min-h-0 overflow-hidden">
+						<div className="flex h-full">
+							<Sidebar />
+							{children}
+						</div>
+					</div>
 					<AppFooter />
 				</div>
 			</body>
