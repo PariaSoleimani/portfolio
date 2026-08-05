@@ -148,4 +148,24 @@ export const WORKSPACE_FILES = {
   "showTopics": true
 }`,
 	},
+	'/contact': {
+		filename: 'contact.css',
+		language: 'CSS',
+		source: `:root {
+  --accent: #f9a8d4;
+  --surface: rgb(24 24 27 / 50%);
+  --text: #f4f4f5;
+  --muted: #71717a;
+  --radius: 0px;
+}
+  
+.contact-card {
+  border-color: var(--accent);
+  border-radius: var(--radius);
+}
+  
+.contact-link {
+  border-l-color: var(--accent);
+}`,
+	},
 };

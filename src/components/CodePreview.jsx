@@ -1,5 +1,6 @@
 'use client';
 
+import ContactPreview from '@components/ContactPreview';
 import ProjectCard from '@components/ProjectCard';
 import { PERSONAL_LINKS } from '@lib/constants';
 
@@ -84,6 +85,14 @@ const CodePreview = ({ path, data, projects = [], fetchFailed }) => {
 						</div>
 					)}
 				</div>
+			</div>
+		);
+	}
+
+	if (path === '/contact') {
+		return (
+			<div className="preview-canvas">
+				<ContactPreview css={data} />
 			</div>
 		);
 	}

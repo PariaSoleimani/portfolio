@@ -1,0 +1,80 @@
+.preview {
+	@apply flex min-h-0 flex-col overflow-hidden order-1 md:order-2;
+}
+
+.preview-main {
+	@apply relative min-h-0 flex-1 overflow-y-auto overflow-x-hidden;
+}
+
+.preview-canvas {
+	@apply h-full p-12;
+	background:
+		linear-gradient(rgb(255 255 255 / 2%) 1px, transparent 1px),
+		linear-gradient(90deg, rgb(255 255 255 / 2%) 1px, transparent 1px),
+		#18181b;
+	background-size: 24px 24px;
+}
+
+.project-card {
+	@apply flex h-full flex-col border-2 border-zinc-700/90 bg-zinc-900/50 px-4 py-4 transition-all duration-200 hover:border-zinc-700 hover:border-l-pink-300 hover:bg-zinc-900/90;
+}
+
+.project-card__link {
+	@apply mt-6 inline-flex items-center w-fit gap-0.5 font-mono text-xs text-zinc-600 transition hover:gap-1.5 group-hover:text-pink-300;
+}
+
+.project-card__description {
+	@apply mt-3 text-sm md:text-base leading-6 text-zinc-500;
+}
+
+.project-card__title {
+	@apply font-mono text-sm md:text-base leading-snug text-zinc-100 transition group-hover:text-pink-300;
+}
+
+.contact-preview {
+	--accent: #f9a8d4;
+	--surface: rgb(24 24 27 / 50%);
+	--text: #f4f4f5;
+	--muted: #71717a;
+	--radius: 0px;
+
+	@apply max-w-2xl text-[var(--text)];
+}
+
+.contact-preview h2 {
+	@apply text-[var(--text)];
+}
+
+.contact-preview .text-mono,
+.contact-preview .icon-accent {
+	@apply text-[var(--accent)];
+}
+
+.contact-preview .text-description {
+	@apply text-[var(--muted)];
+}
+
+.contact-card {
+	@apply border-2 border-zinc-700/90 bg-[var(--surface)] p-4;
+	border-radius: var(--radius);
+}
+
+.contact-link {
+	@apply flex items-center justify-between gap-3 border-2 border-zinc-700/90 border-l-2 bg-zinc-900/40 px-4 py-3 font-mono text-sm text-[var(--text)] no-underline transition-all duration-200 hover:border-zinc-700 hover:border-l-[var(--accent)] hover:bg-zinc-900/90;
+}
+
+.contact-link__value {
+	@apply hidden flex-1 truncate text-[var(--muted)] sm:block;
+}
+
+.contact-link__arrow {
+	@apply size-3.5 shrink-0 text-[var(--muted)] transition group-hover:translate-x-0.5 group-hover:text-[var(--accent)];
+}
+
+.contact-status {
+	@apply mt-4 flex items-center gap-1.5 font-mono text-xs text-[var(--muted)];
+}
+
+.contact-status__dot {
+	@apply size-1.5 shrink-0 rounded-full bg-emerald-400;
+}

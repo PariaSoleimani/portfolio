@@ -37,6 +37,15 @@ const isObject = value =>
 	value && typeof value === 'object' && !Array.isArray(value);
 
 export const parseSource = (path, source) => {
+	if (path === '/contact') {
+		return {
+			value: source
+				.replace(/@import[^;]+;|url\([^)]*\)/gi, '')
+				.replaceAll('<', '\\3c '),
+			error: null,
+		};
+	}
+
 	try {
 		const value = JSON.parse(source);
 		if (!isObject(value)) {
