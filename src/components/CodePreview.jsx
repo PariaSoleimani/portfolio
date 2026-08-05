@@ -3,6 +3,7 @@
 import ContactPreview from '@components/ContactPreview';
 import ProjectCard from '@components/ProjectCard';
 import { PERSONAL_LINKS } from '@lib/constants';
+import Link from 'next/link';
 
 const getGridColumns = columns => {
 	return (
@@ -51,11 +52,11 @@ const CodePreview = ({ path, data, projects = [], fetchError = null }) => {
 						{data?.role || 'Your role'}
 					</h3>
 					<p className="text-description">{data?.bio}</p>
-					<button
-						type="button"
+					<Link
+						href="/projects"
 						className="button-primary mt-5">
 						{data?.cta || 'CTA'}
-					</button>
+					</Link>
 				</div>
 			</div>
 		);
