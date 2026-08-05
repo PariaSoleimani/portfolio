@@ -1,3 +1,5 @@
+import AppFooter from '@components/AppFooter';
+import AppHeader from '@components/AppHeader';
 import '@styles/globals.css';
 import { Teachers } from 'next/font/google';
 
@@ -52,7 +54,11 @@ const RootLayout = ({ children }) => {
 			lang="en"
 			dir="ltr">
 			<body className={teachers.className}>
-				{children}
+				<div className="wrapper">
+					<AppHeader />
+					{children}
+					<AppFooter />
+				</div>
 			</body>
 		</html>
 	);
