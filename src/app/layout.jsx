@@ -1,5 +1,6 @@
 import AppFooter from '@components/AppFooter';
 import AppHeader from '@components/AppHeader';
+import Explorer from '@components/Explorer';
 import Sidebar from '@components/Sidebar';
 import '@styles/globals.css';
 import { Teachers } from 'next/font/google';
@@ -60,6 +61,7 @@ const RootLayout = ({ children }) => {
 					<div className="w-full min-h-0 overflow-hidden">
 						<div className="flex h-full">
 							<Sidebar />
+							<Explorer />
 							{children}
 						</div>
 					</div>
