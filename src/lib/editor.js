@@ -63,6 +63,32 @@ export const parseSource = (path, source) => {
 			});
 		}
 
+		if (path === '/projects') {
+			const limit = Number(value?.limit);
+			if (!Number.isInteger(limit) || limit < 1 || limit > 20) {
+				throw new Error(
+					'"limit" must be a whole number between 1 and 20.',
+				);
+			}
+			if (!['updated', 'stars'].includes(value?.sort)) {
+				throw new Error('"sort" must be "updated" or "stars".');
+			}
+			if (typeof value?.language !== 'string' || !value.language.trim()) {
+				throw new Error('"language" must be a language name or "all".');
+			}
+			if (![1, 2, 3].includes(value.columns)) {
+				throw new Error('"columns" must be 1, 2, or 3.');
+			}
+			if (
+				typeof value.showDescription !== 'boolean' ||
+				typeof value.showTopics !== 'boolean'
+			) {
+				throw new Error(
+					'"showDescription" and "showTopics" must be true or false.',
+				);
+			}
+		}
+
 		return { value, error: null };
 	} catch (error) {
 		return {

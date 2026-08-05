@@ -1,8 +1,45 @@
 'use client';
 
+import ProjectCard from '@components/ProjectCard';
 import { PERSONAL_LINKS } from '@lib/constants';
 
-const CodePreview = ({ path, data, fetchFailed }) => {
+const getGridColumns = columns => {
+	return (
+		{
+			1: 'grid-cols-1',
+			2: 'grid-cols-1 md:grid-cols-2',
+			3: 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3',
+		}[columns] || 'grid-cols-1 md:grid-cols-2'
+	);
+};
+
+const sortProjects = (projects, config) => {
+	const language = config?.language?.toLowerCase();
+	const filtered =
+		language && language !== 'all'
+			? projects.filter(
+					project => project?.language?.toLowerCase() === language,
+				)
+			: projects;
+
+	return filtered
+		.sort((a, b) => {
+			if (config?.sort === 'stars') {
+				return b.stargazers_count - a.stargazers_count;
+			}
+			if (config?.sort === 'updated') {
+				return new Date(b.updated_at) - new Date(a.updated_at);
+			}
+			return 0;
+		})
+
+		.slice(0, config?.limit);
+};
+
+const CodePreview = ({ path, data, projects = [], fetchFailed }) => {
+	const selectedProjects = sortProjects(projects, data);
+	const gridColumns = getGridColumns(data?.columns);
+
 	if (path === '/') {
 		return (
 			<div className="preview-canvas flex items-center">
@@ -71,6 +108,33 @@ const CodePreview = ({ path, data, fetchFailed }) => {
 			</div>
 		);
 	}
+
+	return (
+		<div className="preview-canvas">
+			<div className="preview-stack">
+				<h2>My Projects</h2>
+				<p className="text-description">
+					A collection of recent work, experiments, and things I am
+					learning by building.
+				</p>
+				<p className="text-muted">
+					Showing {selectedProjects.length} project
+					{selectedProjects.length === 1 ? '' : 's'}.
+				</p>
+			</div>
+
+			<div className={`preview-block grid gap-4 ${gridColumns}`}>
+				{selectedProjects.map(project => (
+					<ProjectCard
+						key={project.id}
+						{...project}
+						showDescription={data?.showDescription}
+						showTopics={data?.showTopics}
+					/>
+				))}
+			</div>
+		</div>
+	);
 };
 
 export default CodePreview;
