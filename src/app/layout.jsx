@@ -10,27 +10,31 @@ const teachers = Teachers({
 	fallback: ['sans-serif'],
 });
 
+const siteDescription =
+	'Web and Mobile developer. I build practical, responsive apps with clean code and interfaces people enjoy using.';
+
 export const metadata = {
 	metadataBase: new URL('https://www.paria.dev'),
 	title: {
 		default: 'Paria Soleimani | Developer',
 	},
-	description: 'Paria Soleimani | Developer',
+	description: siteDescription,
 	keywords: [
 		'Developer',
 		'Front-end',
+		'Back-end',
+		'Mobile Development',
+		'Web Development',
 		'Paria Soleimani',
 		'Full-stack',
 		'Software Developer',
-		'Product Designer',
 		'Coding',
 	],
 	authors: [{ name: 'Paria Soleimani', url: 'https://www.paria.dev' }],
 	creator: 'Paria Soleimani',
 	openGraph: {
 		title: 'Paria Soleimani | Developer',
-		description:
-			'A Next.js app styled with the Lato Google Font. Built for speed, beauty, and modern performance.',
+		description: siteDescription,
 		url: 'https://www.paria.dev',
 		siteName: 'Paria Soleimani | Developer',
 		images: [

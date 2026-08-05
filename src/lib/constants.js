@@ -120,8 +120,8 @@ export const WORKSPACE_FILES = {
 		language: 'JSON',
 		source: `{
   "name": "Paria Soleimani",
-  "role": "Web Developer",
-  "bio": "I build practical, responsive web applications with modern technologies. Focused on clean code and intuitive user experiences.",
+  "role": "Web and Mobile Developer",
+  "bio": "I build practical, responsive web and mobile applications with modern technologies. Focused on clean code and intuitive user experiences.",
   "cta": "View Projects"
 }`,
 	},
@@ -131,7 +131,7 @@ export const WORKSPACE_FILES = {
 		source: `{
   "location": "Tehran, Iran",
   "experience": "2+ years of experience",
-  "intro": "I love creating intuitive and engaging user interfaces, writing code that is both beautiful and functional.",
+  "intro": "I love creating intuitive and engaging user interfaces, writing code that is both functional and easy to maintain.",
   "focus": "I enjoy full-stack challenges, side projects, and learning from developer communities.",
   "skills": ["React", "Vue", "Next.js", "Nuxt.js", "Node.js", "Express.js", "PostgreSQL", "React Native", "Expo"]
 }`,
