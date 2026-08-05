@@ -1,5 +1,6 @@
 'use client';
 
+import EditorTerminal from '@components/EditorTerminal';
 import { highlightSource } from '@lib/editor';
 import { useMemo, useRef } from 'react';
 import { VscDiscard } from 'react-icons/vsc';
@@ -96,6 +97,10 @@ const CodeEditor = ({
 						/>
 					</div>
 				</div>
+				<EditorTerminal
+					filename={filename}
+					error={error}
+				/>
 			</div>
 		</section>
 	);
