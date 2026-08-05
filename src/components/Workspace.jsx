@@ -1,6 +1,7 @@
 'use client';
 
 import CodeEditor from '@components/CodeEditor';
+import CodePreview from '@components/CodePreview';
 import { useWorkspaceEditor } from '@hooks/useWorkspaceEditor';
 import { cn } from '@lib/utils';
 import { useState } from 'react';
@@ -14,6 +15,7 @@ const Workspace = ({ path, projects, fetchError = null }) => {
 		updateSource,
 		resetSource,
 		error,
+		previewData,
 		isModified,
 	} = useWorkspaceEditor(path);
 	const [editorOpen, setEditorOpen] = useState(true);
@@ -61,7 +63,14 @@ const Workspace = ({ path, projects, fetchError = null }) => {
 							<span>running</span>
 						</p>
 					</div>
-					<div className="preview-main"></div>
+					<div className="preview-main">
+						<CodePreview
+							path={path}
+							data={previewData}
+							projects={projects}
+							fetchError={fetchError}
+						/>
+					</div>
 				</section>
 			</div>
 		</div>
