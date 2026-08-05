@@ -32,3 +32,42 @@ export const highlightSource = source => {
 	result.push(source?.slice(lastIndex));
 	return result;
 };
+
+const isObject = value =>
+	value && typeof value === 'object' && !Array.isArray(value);
+
+export const parseSource = (path, source) => {
+	try {
+		const value = JSON.parse(source);
+		if (!isObject(value)) {
+			throw new Error('The editor expects a JSON object.');
+		}
+
+		if (path === '/about') {
+			if (!Array.isArray(value?.skills)) {
+				throw new Error('"skills" must be an array of strings.');
+			}
+			if (value?.skills.length === 0) {
+				throw new Error('"skills" must include at least one skill.');
+			}
+			if (value?.skills.length > 12) {
+				throw new Error('"skills" can have at most 12 items.');
+			}
+			value.skills = value?.skills.map((skill, index) => {
+				if (typeof skill !== 'string' || !skill.trim()) {
+					throw new Error(
+						`"skills[${index}]" must be a non-empty string.`,
+					);
+				}
+				return skill.trim();
+			});
+		}
+
+		return { value, error: null };
+	} catch (error) {
+		return {
+			value: null,
+			error: error.message,
+		};
+	}
+};
