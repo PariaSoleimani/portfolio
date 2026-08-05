@@ -3,9 +3,11 @@
 import CodeEditor from '@components/CodeEditor';
 import CodePreview from '@components/CodePreview';
 import { useWorkspaceEditor } from '@hooks/useWorkspaceEditor';
-import { cn } from '@lib/utils';
+import { cn, getStorageItem, setStorageItem } from '@lib/utils';
 import { useState } from 'react';
 import { VscChevronLeft, VscChevronRight } from 'react-icons/vsc';
+
+const EDITOR_OPEN_KEY = 'portfolio-editor-open';
 
 const Workspace = ({ path, projects, fetchError = null }) => {
 	const {
@@ -18,7 +20,17 @@ const Workspace = ({ path, projects, fetchError = null }) => {
 		previewData,
 		isModified,
 	} = useWorkspaceEditor(path);
-	const [editorOpen, setEditorOpen] = useState(true);
+	const [editorOpen, setEditorOpen] = useState(
+		getStorageItem(EDITOR_OPEN_KEY) === 'true',
+	);
+
+	const toggleEditor = () => {
+		setEditorOpen(isOpen => {
+			const next = !isOpen;
+			setStorageItem(EDITOR_OPEN_KEY, next);
+			return next;
+		});
+	};
 
 	return (
 		<div className="workspace">
@@ -27,7 +39,7 @@ const Workspace = ({ path, projects, fetchError = null }) => {
 				<div className="row-group">
 					<button
 						type="button"
-						onClick={() => setEditorOpen(isOpen => !isOpen)}
+						onClick={toggleEditor}
 						aria-label={
 							editorOpen ? 'Collapse editor' : 'Show editor'
 						}
