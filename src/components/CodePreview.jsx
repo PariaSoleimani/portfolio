@@ -37,7 +37,7 @@ const sortProjects = (projects, config) => {
 		.slice(0, config?.limit);
 };
 
-const CodePreview = ({ path, data, projects = [], fetchFailed }) => {
+const CodePreview = ({ path, data, projects = [], fetchError = null }) => {
 	const selectedProjects = sortProjects(projects, data);
 	const gridColumns = getGridColumns(data?.columns);
 
@@ -97,7 +97,7 @@ const CodePreview = ({ path, data, projects = [], fetchFailed }) => {
 		);
 	}
 
-	if (fetchFailed) {
+	if (fetchError) {
 		return (
 			<div className="preview-canvas flex items-center">
 				<div className="preview-stack">
